@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Richard Kwarteng | Web Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== Reset & Base Styles ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #111;
+            line-height: 1.6;
+            background: #f5f7fa;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        img {
+            max-width: 100%;
+        }
+
+        /* ===== Navbar ===== */
+        nav {
+            background: #0d1b2a;
+            color: #fff;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav h1 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00b4d8;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        nav ul li {
+            margin-left: 2rem;
+        }
+        nav ul li a {
+            color: #fff;
+            transition: 0.3s;
+        }
+        nav ul li a:hover {
+            color: #00b4d8;
+        }
+
+        /* ===== Sections ===== */
+        section {
+            padding: 6rem 2rem;
+        }
+
+        /* ===== Home / Hero ===== */
+        #home {
+            background: linear-gradient(to right, #00b4d8, #0077b6);
+            color: #fff;
+            text-align: center;
+            padding-top: 10rem;
+            padding-bottom: 10rem;
+        }
+        #home h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        #home p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        #home a {
+            background: #fff;
+            color: #0077b6;
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        #home a:hover {
+            background: #00b4d8;
+            color: #fff;
+        }
+
+        /* ===== About Me ===== */
+        #about {
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
+        }
+        #about h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #0077b6;
+        }
+        #about p {
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        /* ===== Projects / Portfolio ===== */
+        #projects {
+            background: #e0f7fa;
+            text-align: center;
+        }
+        #projects h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #0077b6;
+        }
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: auto;
+        }
+        .project-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            padding: 1rem;
+            transition: transform 0.3s;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        .project-card h3 {
+            margin-bottom: 0.5rem;
+            color: #0077b6;
+        }
+        .project-card p {
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        /* ===== Resume / Skills ===== */
+        #skills {
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
+        }
+        #skills h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #0077b6;
+        }
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+        .skill {
+            background: #00b4d8;
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border-radius: 20px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .skill:hover {
+            background: #0077b6;
+        }
+
+        /* ===== Contact ===== */
+        #contact {
+            background: #0d1b2a;
+            color: #fff;
+            text-align: center;
+        }
+        #contact h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #00b4d8;
+        }
+        #contact a {
+            display: inline-block;
+            margin: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: #00b4d8;
+            color: #fff;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        #contact a:hover {
+            background: #0077b6;
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            background: #111;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+                margin-top: 1rem;
+            }
+            #home h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <h1>Richard K.</h1>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home / Hero -->
+    <section id="home">
+        <h2>Hi, I'm Richard Kwarteng</h2>
+        <p>Professional student Web Developer creating sleek, modern websites that help clients grow.</p>
+        <a href="#contact">Hire Me</a>
+    </section>
+
+    <!-- About Me -->
+    <section id="about">
+        <h2>About Me</h2>
+        <p>
+            I'm a 17-year-old web developer passionate about building beautiful and functional websites.
+            I focus on helping clients showcase their work and grow their business online.
+        </p>
+    </section>
+
+    <!-- Projects / Portfolio -->
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="projects-container">
+            <div class="project-card">
+                <h3>Project 1</h3>
+                <p>A sleek website designed for a local business to increase online presence.</p>
+            </div>
+            <div class="project-card">
+                <h3>Project 2</h3>
+                <p>Responsive portfolio website for a creative professional.</p>
+            </div>
+            <div class="project-card">
+                <h3>Project 3</h3>
+                <p>Landing page design with interactive animations and modern layout.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume / Skills -->
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills-container">
+            <div class="skill">HTML</div>
+            <div class="skill">CSS</div>
+            <div class="skill">Git & GitHub</div>
+            <div class="skill">Responsive Design</div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <p>Let's work together! Reach out via:</p>
+        <a href="mailto:your.kwartengr06@gmail.com">Email</a>
+        <a href="https://wa.me/0202980941" target="_blank">WhatsApp</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2026 Richard Kwarteng. All rights reserved.
+    </footer>
+
+</body>
+</html>
