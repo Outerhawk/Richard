@@ -1,298 +1,428 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Richard Kwarteng | Web Developer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        /* ===== Reset & Base Styles ===== */
-        *
-      html {
-  scroll-behavior: smooth;
-      }
-        {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Roboto', sans-serif;
-            color: #111;
-            line-height: 1.6;
-            background: #f5f7fa;
-        }
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        img {
-            max-width: 100%;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Richard Kwarteng — Web Developer</title>
+<meta name="description" content="Richard Kwarteng — Web Developer building fast, functional websites.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0F1214;
+    --bg-raised:#161A1D;
+    --line:#262B2F;
+    --fg:#EDEDE8;
+    --fg-dim:#8B9199;
+    --accent:#E8A33D;
+    --accent-dim:#4A3A1F;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Inter', sans-serif;
+    --maxw: 1100px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--fg);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--accent);color:#0F1214;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
 
-        /* ===== Navbar ===== */
-        nav {
-            background: #0d1b2a;
-            color: #fff;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        nav h1 {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #00b4d8;
-        }
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        nav ul li {
-            margin-left: 2rem;
-        }
-        nav ul li a {
-            color: #fff;
-            transition: 0.3s;
-        }
-        nav ul li a:hover {
-            color: #00b4d8;
-        }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;}
 
-        /* ===== Sections ===== */
-        section {
-            padding: 6rem 2rem;
-        }
+  /* Focus visibility */
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
 
-        /* ===== Home / Hero ===== */
-        #home {
-            background: linear-gradient(to right, #00b4d8, #0077b6);
-            color: #fff;
-            text-align: center;
-            padding-top: 10rem;
-            padding-bottom: 10rem;
-        }
-        #home h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        #home p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-        #home a {
-            background: #fff;
-            color: #0077b6;
-            padding: 0.8rem 2rem;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        #home a:hover {
-            background: #00b4d8;
-            color: #fff;
-        }
+  /* ---------- Nav ---------- */
+  header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(15,18,20,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    height:72px;
+  }
+  .logo{
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:15px;
+    letter-spacing:0.02em;
+    color:var(--fg);
+    display:flex;align-items:center;gap:8px;
+  }
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);
+    box-shadow:0 0 0 3px var(--accent-dim);}
+  .navlinks{display:flex;gap:36px;font-family:var(--mono);font-size:13px;}
+  .navlinks a{color:var(--fg-dim);transition:color .2s;position:relative;}
+  .navlinks a:hover{color:var(--fg);}
+  .navlinks a::before{content:attr(data-idx);color:var(--accent);margin-right:6px;}
+  .nav-cta{
+    font-family:var(--mono);font-size:13px;
+    border:1px solid var(--line);
+    padding:9px 16px;border-radius:6px;
+    transition:border-color .2s, background .2s;
+  }
+  .nav-cta:hover{border-color:var(--accent);background:var(--accent-dim);}
+  .menu-btn{display:none;background:none;border:none;color:var(--fg);cursor:pointer;padding:8px;}
 
-        /* ===== About Me ===== */
-        #about {
-            max-width: 900px;
-            margin: auto;
-            text-align: center;
-        }
-        #about h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: #0077b6;
-        }
-        #about p {
-            font-size: 1.1rem;
-            color: #333;
-        }
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:120px 0 100px;
+    border-bottom:1px solid var(--line);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;top:-200px;right:-200px;
+    width:500px;height:500px;
+    background:radial-gradient(circle, var(--accent-dim) 0%, transparent 70%);
+    opacity:0.5;
+    pointer-events:none;
+  }
+  .status-line{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--accent);
+    display:flex;align-items:center;gap:10px;
+    margin-bottom:28px;
+  }
+  .status-line .blink{
+    width:7px;height:7px;background:var(--accent);border-radius:50%;
+    animation:pulse 1.6s infinite;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:1;} 50%{opacity:0.25;}
+  }
+  .hero h1{
+    font-size:clamp(40px, 6vw, 72px);
+    font-weight:800;
+    line-height:1.05;
+    letter-spacing:-0.02em;
+    max-width:820px;
+  }
+  .hero h1 .accent{color:var(--accent);}
+  .hero-sub{
+    margin-top:24px;
+    font-size:18px;
+    color:var(--fg-dim);
+    max-width:560px;
+    line-height:1.7;
+  }
+  .hero-actions{
+    margin-top:40px;
+    display:flex;gap:16px;flex-wrap:wrap;
+  }
+  .btn{
+    font-family:var(--mono);
+    font-size:14px;
+    padding:14px 26px;
+    border-radius:6px;
+    display:inline-flex;align-items:center;gap:8px;
+    transition:transform .2s, background .2s, border-color .2s;
+  }
+  .btn-primary{
+    background:var(--accent);
+    color:#0F1214;
+    font-weight:700;
+    border:1px solid var(--accent);
+  }
+  .btn-primary:hover{transform:translateY(-2px);}
+  .btn-ghost{
+    border:1px solid var(--line);
+    color:var(--fg);
+  }
+  .btn-ghost:hover{border-color:var(--fg-dim);transform:translateY(-2px);}
 
-        /* ===== Projects / Portfolio ===== */
-        #projects {
-            background: #e0f7fa;
-            text-align: center;
-        }
-        #projects h2 {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            color: #0077b6;
-        }
-        .projects-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            max-width: 1000px;
-            margin: auto;
-        }
-        .project-card {
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            padding: 1rem;
-            transition: transform 0.3s;
-        }
-        .project-card:hover {
-            transform: translateY(-5px);
-        }
-        .project-card h3 {
-            margin-bottom: 0.5rem;
-            color: #0077b6;
-        }
-        .project-card p {
-            font-size: 0.95rem;
-            color: #555;
-        }
+  .hero-meta{
+    margin-top:64px;
+    display:flex;gap:48px;
+    flex-wrap:wrap;
+    font-family:var(--mono);
+  }
+  .hero-meta div{border-left:2px solid var(--line);padding-left:16px;}
+  .hero-meta .num{font-size:26px;font-weight:700;color:var(--fg);}
+  .hero-meta .label{font-size:12px;color:var(--fg-dim);margin-top:4px;}
 
-        /* ===== Resume / Skills ===== */
-        #skills {
-            max-width: 900px;
-            margin: auto;
-            text-align: center;
-        }
-        #skills h2 {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            color: #0077b6;
-        }
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1.5rem;
-        }
-        .skill {
-            background: #00b4d8;
-            color: #fff;
-            padding: 0.8rem 1.5rem;
-            border-radius: 20px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        .skill:hover {
-            background: #0077b6;
-        }
+  /* ---------- Section shared ---------- */
+  section{padding:96px 0;border-bottom:1px solid var(--line);}
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--accent);
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    display:flex;align-items:center;gap:10px;
+    margin-bottom:16px;
+  }
+  .eyebrow::after{content:"";flex:1;height:1px;background:var(--line);max-width:80px;}
+  h2{
+    font-size:clamp(28px,4vw,40px);
+    font-weight:700;
+    letter-spacing:-0.01em;
+    margin-bottom:48px;
+    max-width:600px;
+  }
 
-        /* ===== Contact ===== */
-        #contact {
-            background: #0d1b2a;
-            color: #fff;
-            text-align: center;
-        }
-        #contact h2 {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            color: #00b4d8;
-        }
-        #contact a {
-            display: inline-block;
-            margin: 0.5rem;
-            padding: 0.8rem 1.5rem;
-            background: #00b4d8;
-            color: #fff;
-            border-radius: 5px;
-            transition: 0.3s;
-        }
-        #contact a:hover {
-            background: #0077b6;
-        }
+  /* ---------- About ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:64px;
+    align-items:start;
+  }
+  .about-grid p{color:var(--fg-dim);font-size:16px;margin-bottom:18px;}
+  .about-grid p strong{color:var(--fg);font-weight:600;}
+  .stack{
+    background:var(--bg-raised);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:28px;
+  }
+  .stack-title{font-family:var(--mono);font-size:12px;color:var(--fg-dim);
+    text-transform:uppercase;letter-spacing:0.08em;margin-bottom:18px;}
+  .stack-list{display:flex;flex-wrap:wrap;gap:10px;}
+  .stack-list span{
+    font-family:var(--mono);font-size:13px;
+    border:1px solid var(--line);
+    padding:7px 12px;border-radius:6px;
+    color:var(--fg);
+  }
 
-        /* ===== Footer ===== */
-        footer {
-            background: #111;
-            color: #fff;
-            text-align: center;
-            padding: 1rem;
-        }
+  /* ---------- Work ---------- */
+  .work-list{display:flex;flex-direction:column;}
+  .work-item{
+    display:grid;
+    grid-template-columns:80px 1fr auto;
+    gap:24px;
+    align-items:center;
+    padding:28px 0;
+    border-top:1px solid var(--line);
+    transition:background .2s;
+  }
+  .work-item:last-child{border-bottom:1px solid var(--line);}
+  .work-item:hover{background:var(--bg-raised);}
+  .work-idx{font-family:var(--mono);color:var(--fg-dim);font-size:14px;}
+  .work-info h3{font-size:20px;font-weight:600;margin-bottom:6px;}
+  .work-info p{color:var(--fg-dim);font-size:14px;}
+  .work-tags{display:flex;gap:8px;flex-wrap:wrap;justify-self:end;}
+  .work-tags span{
+    font-family:var(--mono);font-size:11px;color:var(--accent);
+    border:1px solid var(--accent-dim);padding:5px 10px;border-radius:20px;
+  }
+  @media(max-width:720px){
+    .work-item{grid-template-columns:40px 1fr;}
+    .work-tags{grid-column:2/3;justify-self:start;}
+  }
 
-        /* ===== Responsive ===== */
-        @media (max-width: 768px) {
-            nav ul {
-                flex-direction: column;
-                gap: 1rem;
-                margin-top: 1rem;
-            }
-            #home h2 {
-                font-size: 2rem;
-            }
-        }
-    </style>
+  /* ---------- Services ---------- */
+  .services-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:10px;
+    overflow:hidden;
+  }
+  .service{
+    background:var(--bg);
+    padding:32px 28px;
+  }
+  .service .icon{
+    font-family:var(--mono);color:var(--accent);font-size:13px;margin-bottom:20px;
+  }
+  .service h3{font-size:17px;margin-bottom:10px;font-weight:600;}
+  .service p{color:var(--fg-dim);font-size:14px;}
+  @media(max-width:780px){
+    .services-grid{grid-template-columns:1fr;}
+  }
+
+  /* ---------- Contact ---------- */
+  .contact{
+    border-bottom:none;
+    text-align:left;
+  }
+  .contact-inner{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    flex-wrap:wrap;gap:32px;
+  }
+  .contact h2{margin-bottom:12px;}
+  .contact p{color:var(--fg-dim);max-width:420px;}
+  .contact-links{display:flex;flex-direction:column;gap:10px;align-items:flex-end;}
+  .contact-links a{
+    font-family:var(--mono);font-size:15px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .contact-links a:hover{color:var(--accent);}
+  .contact-links a::after{content:"↗";color:var(--fg-dim);font-size:12px;}
+
+  footer{
+    padding:28px 0;
+    font-family:var(--mono);font-size:12px;color:var(--fg-dim);
+    display:flex;justify-content:space-between;
+  }
+
+  @media(max-width:780px){
+    .navlinks{display:none;}
+    .about-grid{grid-template-columns:1fr;}
+    .contact-inner{align-items:flex-start;}
+    .contact-links{align-items:flex-start;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+</style>
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav>
-        <h1>Richard K.</h1>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About Me</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+<header>
+  <nav class="wrap">
+    <div class="logo"><span class="dot"></span>RICHARD.DEV</div>
+    <div class="navlinks">
+      <a href="#about" data-idx="01">About</a>
+      <a href="#work" data-idx="02">Work</a>
+      <a href="#services" data-idx="03">Services</a>
+      <a href="#contact" data-idx="04">Contact</a>
+    </div>
+    <a href="#contact" class="nav-cta">Start a project</a>
+  </nav>
+</header>
 
-    <!-- Home / Hero -->
-    <section id="home">
-        <h2>Hi, I'm Richard.<p>A Professional web developer creating sleek, modern websites that help clients grow.</p>
-        <a href="#contact">Hire Me</a>
-    </section>
+<section class="hero">
+  <div class="wrap">
+    <div class="status-line"><span class="blink"></span> AVAILABLE FOR FREELANCE WORK</div>
+    <h1>Richard Kwarteng builds websites that <span class="accent">actually ship.</span></h1>
+    <p class="hero-sub">A web developer based in Ghana, turning ideas into clean, fast, functional sites — from first commit to production.</p>
+    <div class="hero-actions">
+      <a href="#work" class="btn btn-primary">View my work →</a>
+      <a href="#contact" class="btn btn-ghost">Get in touch</a>
+    </div>
+    <div class="hero-meta">
+      <div><div class="num">HTML/CSS/JS</div><div class="label">Core stack</div></div>
+      <div><div class="num">Ghana</div><div class="label">Based &amp; remote-ready</div></div>
+      <div><div class="num">100%</div><div class="label">Client-focused</div></div>
+    </div>
+  </div>
+</section>
 
-    <!-- About Me -->
-    <section id="about">
-        <h2>About Me</h2>
-        <p>
-            Hi, I'm Richard Kwarteng. I build high-performance, mobile-friendly websites that help local businesses get more customers.
-            I focus on helping clients showcase their work and grow their business online.
-        </p>
-    </section>
-
-    <!-- Projects / Portfolio -->
-    <section id="projects">
-        <h2>Projects</h2>
-        <div class="projects-container">
-            <div class="project-card">
-                <h3>Project 1</h3>
-                <p>A sleek website designed for a local business to increase online presence.</p>
-            </div>
-            <div class="project-card">
-                <h3>Project 2</h3>
-                <p>Responsive portfolio website for a creative professional.</p>
-            </div>
-            <div class="project-card">
-                <h3>Project 3</h3>
-                <p>Landing page design with interactive animations and modern layout.</p>
-            </div>
+<section id="about">
+  <div class="wrap">
+    <div class="eyebrow">01 / About</div>
+    <div class="about-grid">
+      <div>
+        <p>I'm <strong>Richard Kwarteng</strong>, a web developer focused on building clean, modern websites for real clients and real problems.</p>
+        <p>I work close to the metal — <strong>HTML, CSS, and JavaScript</strong> — because understanding the fundamentals means I can build sites that are fast, maintainable, and don't rely on unnecessary bloat.</p>
+        <p>Right now I'm growing a freelance practice: portfolio sites, small business sites, and landing pages, with a focus on getting from brief to launch without wasted motion.</p>
+      </div>
+      <div class="stack">
+        <div class="stack-title">Toolkit</div>
+        <div class="stack-list">
+          <span>HTML5</span>
+          <span>CSS3</span>
+          <span>JavaScript</span>
+          <span>Responsive Design</span>
+          <span>Git</span>
+          <span>Figma → Code</span>
+          <span>Performance Tuning</span>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Resume / Skills -->
-    <section id="skills">
-        <h2>Skills</h2>
-        <div class="skills-container">
-            <div class="skill">HTML</div>
-            <div class="skill">CSS</div>
-            <div class="skill">Git & GitHub</div>
-            <div class="skill">Responsive Design</div>
+<section id="work">
+  <div class="wrap">
+    <div class="eyebrow">02 / Selected Work</div>
+    <h2>Projects &amp; case studies</h2>
+    <div class="work-list">
+      <div class="work-item">
+        <div class="work-idx">01</div>
+        <div class="work-info">
+          <h3>Client Portfolio Site</h3>
+          <p>A fast, responsive personal brand site built from a design brief to launch.</p>
         </div>
-    </section>
+        <div class="work-tags"><span>HTML/CSS</span><span>JS</span></div>
+      </div>
+      <div class="work-item">
+        <div class="work-idx">02</div>
+        <div class="work-info">
+          <h3>Small Business Landing Page</h3>
+          <p>Single-page site with contact form, optimized for mobile-first visitors.</p>
+        </div>
+        <div class="work-tags"><span>Responsive</span><span>Forms</span></div>
+      </div>
+      <div class="work-item">
+        <div class="work-idx">03</div>
+        <div class="work-info">
+          <h3>This Portfolio</h3>
+          <p>The site you're looking at right now — built to show, not just tell.</p>
+        </div>
+        <div class="work-tags"><span>Design</span><span>Build</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Contact -->
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <p>Let's work together! Reach out via:</p>
-        <a href="mailto:your.kwartengr06@gmail.com">Email</a>
-        <a href="https://wa.me/0202980941" target="_blank">WhatsApp</a>
-    </section>
+<section id="services">
+  <div class="wrap">
+    <div class="eyebrow">03 / What I Do</div>
+    <h2>Services</h2>
+    <div class="services-grid">
+      <div class="service">
+        <div class="icon">[ 01 ]</div>
+        <h3>Portfolio &amp; Personal Sites</h3>
+        <p>A site that represents you well — clean, fast, and easy to update.</p>
+      </div>
+      <div class="service">
+        <div class="icon">[ 02 ]</div>
+        <h3>Business Landing Pages</h3>
+        <p>Single-page sites built to convert visitors, with clear calls to action.</p>
+      </div>
+      <div class="service">
+        <div class="icon">[ 03 ]</div>
+        <h3>Site Maintenance</h3>
+        <p>Updates, fixes, and small improvements to keep an existing site sharp.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        &copy; 2026 Richard Kwarteng. All rights reserved.
-    </footer>
+<section class="contact" id="contact">
+  <div class="wrap contact-inner">
+    <div>
+      <div class="eyebrow">04 / Contact</div>
+      <h2>Let's build something.</h2>
+      <p>Have a project in mind? I'm currently taking on new freelance work — reach out and let's talk.</p>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:hello@richardkwarteng.dev">hello@richardkwarteng.dev</a>
+      <a href="#" target="_blank" rel="noopener">GitHub</a>
+      <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <span>© <span id="year"></span> Richard Kwarteng</span>
+  <span>Built with HTML, CSS &amp; JS</span>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 
 </body>
-</html>
+    </html>
